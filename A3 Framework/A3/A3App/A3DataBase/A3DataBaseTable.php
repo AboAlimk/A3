@@ -35,6 +35,9 @@ class A3DataBaseTable{
         if(!is_array($insert) || !count($insert)){
             self::__error('error_parameter_type',['insert values','array'],__FUNCTION__);
         }
+        $insert = array_map(function($value){
+            return addslashes($value);
+        },$insert);
         $statement = A3DataBaseQueryParser::insert($this->table_name,$insert);
         if($statement!==false){
             $query = A3DataBaseQuery::multiQuery($this->connection,$statement);
