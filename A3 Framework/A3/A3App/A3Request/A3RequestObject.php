@@ -121,6 +121,11 @@ class A3RequestObject
         return $_POST;
     }
 
+    public function input(): string|bool
+    {
+        return file_get_contents('php://input');
+    }
+
     public function put($name = null)
     {
         if (in_array("PUT", $this->methods)) {
