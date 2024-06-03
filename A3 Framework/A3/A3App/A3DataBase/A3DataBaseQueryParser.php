@@ -17,13 +17,13 @@ use A3String;
 class A3DataBaseQueryParser
 {
 
-    public static function insert($table_name, $insert): bool|string
+    public static function insert($table_name, $insert): array|bool|string
     {
         if (is_array($insert) && count($insert)) {
             if (!empty($insert[0]) && is_array($insert[0])) {
-                $out = '';
+                $out = [];
                 foreach ($insert as $item) {
-                    $out .= self::getSingleInsert($table_name, $item);
+                    $out[] = self::getSingleInsert($table_name, $item);
                 }
                 return $out;
             } else {
